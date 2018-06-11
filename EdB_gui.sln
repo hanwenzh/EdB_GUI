@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27703.2026
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EdB_GUI", "EdB_gui\EdB_gui.vcxproj", "{B12702AD-ABFB-343A-A199-8E24837244A3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B9F8A1B8-BA64-4C5E-8E34-EA33B33D68EA} = {B9F8A1B8-BA64-4C5E-8E34-EA33B33D68EA}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "EdB_Core", "EdB_Core\EdB_Core.vcxproj", "{B9F8A1B8-BA64-4C5E-8E34-EA33B33D68EA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|x86.ActiveCfg = Debug|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Debug|x86.Build.0 = Debug|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x86.ActiveCfg = Release|Win32
+		{B12702AD-ABFB-343A-A199-8E24837244A3}.Release|x86.Build.0 = Release|Win32
+		{B9F8A1B8-BA64-4C5E-8E34-EA33B33D68EA}.Debug|x86.ActiveCfg = Debug|Win32
+		{B9F8A1B8-BA64-4C5E-8E34-EA33B33D68EA}.Debug|x86.Build.0 = Debug|Win32
+		{B9F8A1B8-BA64-4C5E-8E34-EA33B33D68EA}.Release|x86.ActiveCfg = Release|Win32
+		{B9F8A1B8-BA64-4C5E-8E34-EA33B33D68EA}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {56F1827B-6D2E-494A-8CA0-DDA85CED84C2}
+	EndGlobalSection
+EndGlobal
