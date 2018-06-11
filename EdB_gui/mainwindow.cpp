@@ -57,7 +57,8 @@ MainWindow::MainWindow(QWidget *parent)
 	DWORD style = ::GetWindowLong(hwnd, GWL_STYLE);
 	::SetWindowLong(hwnd, GWL_STYLE, style | WS_MAXIMIZEBOX | WS_THICKFRAME | WS_CAPTION);
 
-	ui.label_welcome->setText(QString::fromStdWString(L"正在还原上次登录会话，请稍后！"));
+	ui.label_welcome->setText(QString::fromStdWString(L"正在还原上次登录会话，请稍后！")); 
+	ui.label_state->setText("");
 	show();
 	rollBackRecord();
 }
@@ -68,7 +69,12 @@ void MainWindow::rollBackRecord()
 	ui.label_welcome->setText(QString::fromStdWString(L"正在还原上次登录会话，请稍后！"));
 	QDir dir(qApp->applicationDirPath() + "/data");
 	if (!dir.exists())
+	{
+		ui.label_welcome->setText(QString::fromStdWString(L"当前尚未有任何登录信息！"));
+		ui.label_state->hide();
 		return;
+	}
+
 	int i = 0;
 	ui.label_state->show();
 	QFileInfoList iniList = dir.entryInfoList(QStringList() << "*.ini", QDir::Files);
