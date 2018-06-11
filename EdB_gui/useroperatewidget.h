@@ -53,4 +53,5 @@ private slots:
 	void onUpdateView();		//刷新实时数据
 	void onQueryTimerTimeout();
 	void onPriceTimerTimeout();
+	void onQueryToolBoxIndexChanged(int);
 };

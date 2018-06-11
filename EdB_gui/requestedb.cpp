@@ -77,6 +77,7 @@ void RequestEdB::run()
 		bool isRead = localsocket.waitForReadyRead(10000);
 		if (!isRead)
 		{
+			m_userOperateWidget->m_getPriceMutex.lock();
 			m_userOperateWidget->m_getPriceCache[m_args[0].toString()] = QString::fromStdWString(L"查询中断，未经处理的异常");
 			m_userOperateWidget->m_getPriceMutex.unlock();
 			mutexControl.unlock();

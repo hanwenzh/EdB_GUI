@@ -79,6 +79,8 @@ void UserOperateWidget::initTab()
 		}
 	});
 
+	connect(ui.toolBox_queryData, &QToolBox::currentChanged, this, &UserOperateWidget::onQueryToolBoxIndexChanged);
+
 	m_queryTimer.setSingleShot(false);
 	connect(ui.button_query, &QPushButton::clicked, this, &UserOperateWidget::onButtonQueryClicked);
 	connect(&m_queryTimer, &QTimer::timeout, this, &UserOperateWidget::onQueryTimerTimeout);
@@ -120,7 +122,8 @@ void UserOperateWidget::onButtonQueryClicked()
 		ui.toolBox_queryData->addItem([]()->QLabel * {auto p = new QLabel(QString::fromWCharArray(L"Î´ÉèÖÃ²éÑ¯Ïî")); p->setAlignment(Qt::AlignCenter); return p; }(), "");
 		return;
 	}
-
+	if (ui.toolBox_queryData->currentIndex() == -1)
+		ui.toolBox_queryData->setCurrentIndex(0);
 
 	if (ui.check_repeatQuery->isChecked())
 	{
@@ -146,6 +149,7 @@ void UserOperateWidget::onButtonQueryClicked()
 			ui.label_query2->setEnabled(false);
 			ui.button_setEdB->setEnabled(false);
 			ui.button_query->setText(QString::fromStdWString(L"Í£Ö¹"));
+			onQueryTimerTimeout();
 		}
 	}
 	else
@@ -186,6 +190,7 @@ void UserOperateWidget::onButtonGetPriceClicked()
 			ui.label_getPrice1->setEnabled(false);
 			ui.label_getPrice2->setEnabled(false);
 			ui.button_getPrice->setText(QString::fromStdWString(L"Í£Ö¹"));
+			onPriceTimerTimeout();
 		}
 	}
 	else
@@ -221,7 +226,12 @@ void UserOperateWidget::queryData(QString name,  int category)
 
 void UserOperateWidget::onQueryTimerTimeout()
 {
-	getPrice();
+	int index = ui.toolBox_queryData->currentIndex();
+	if (index == -1)
+		return;
+	QString name = ui.toolBox_queryData->itemText(index);
+	if (!name.isEmpty())
+		queryData(name, m_curQueryInfo[name]);
 }
 
 void UserOperateWidget::onPriceTimerTimeout()
@@ -311,8 +321,12 @@ void UserOperateWidget::onButtonCancelOrderClicked()
 	m_cancelOrderMutex.unlock();
 }
 
-typedef QVector<QString> StringVector;
-Q_DECLARE_METATYPE(StringVector)
+void UserOperateWidget::onQueryToolBoxIndexChanged(int)
+{
+	if (ui.check_repeatQuery->isChecked() && m_queryTimer.isActive())
+		onQueryTimerTimeout();
+}
+
 
 void UserOperateWidget::onUpdateView()
 {
