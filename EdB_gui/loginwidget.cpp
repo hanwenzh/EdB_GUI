@@ -72,9 +72,22 @@ void LoginWidget::onButtonTestClicked()
 {
 	login();
 
-	if (m_loginInfo.clientID == 0)
+	if (m_loginInfo.clientID <= 0)
 	{
-		QMessageBox::critical(this, QString::fromWCharArray(L"²âÊÔµÇÂ¼"), QString::fromWCharArray(L"µÇÂ¼Ê§°Ü"));
+		if (m_loginInfo.clientID == 0)
+			QMessageBox::critical(this, QString::fromWCharArray(L"²âÊÔµÇÂ¼"), QString::fromWCharArray(L"µÇÂ¼Ê§°Ü£ºµÇÂ¼ÐÅÏ¢ÓÐÎó"));
+		else if (m_loginInfo.clientID == -100)
+			QMessageBox::critical(this, QString::fromWCharArray(L"²âÊÔµÇÂ¼"), QString::fromWCharArray(L"µÇÂ¼Ê§°Ü£ºÈ±ÉÙÐí¿ÉÎÄ¼þ"));
+		else if (m_loginInfo.clientID == -101)
+			QMessageBox::critical(this, QString::fromWCharArray(L"²âÊÔµÇÂ¼"), QString::fromWCharArray(L"µÇÂ¼Ê§°Ü£ºÓÃ»§Î´ÊÚÈ¨"));
+		else if (m_loginInfo.clientID == -102)
+			QMessageBox::critical(this, QString::fromWCharArray(L"²âÊÔµÇÂ¼"), QString::fromWCharArray(L"µÇÂ¼Ê§°Ü£ºIP±»½ûÖ¹"));
+		else if (m_loginInfo.clientID == -103)
+			QMessageBox::critical(this, QString::fromWCharArray(L"²âÊÔµÇÂ¼"), QString::fromWCharArray(L"µÇÂ¼Ê§°Ü£ºÒÑ¹ýÓÐÐ§ÆÚÏÞ"));
+		else if (m_loginInfo.clientID == -104)
+			QMessageBox::critical(this, QString::fromWCharArray(L"²âÊÔµÇÂ¼"), QString::fromWCharArray(L"µÇÂ¼Ê§°Ü£ºÁ¬½Ó³¬Ê±"));
+		else
+			QMessageBox::critical(this, QString::fromWCharArray(L"²âÊÔµÇÂ¼"), QString::fromWCharArray(L"µÇÂ¼Ê§°Ü£ºÎ´ÖªÔ­Òò"));
 	}
 	else
 	{
@@ -86,7 +99,7 @@ void LoginWidget::onButtonTestClicked()
 void LoginWidget::onButtonConfirmClicked()
 {
 	login();
-	if (m_loginInfo.clientID != 0)
+	if (m_loginInfo.clientID > 0)
 	{
 		QString curGroup = ui.combo_saveConfig->currentText();
 		if (!curGroup.isEmpty())
@@ -106,6 +119,19 @@ void LoginWidget::onButtonConfirmClicked()
 	}
 	else
 	{
-		QMessageBox::critical(this, QString::fromWCharArray(L"µÇÂ¼"), QString::fromWCharArray(L"µÇÂ¼Ê§°Ü"));
+		if (m_loginInfo.clientID == 0)
+			QMessageBox::critical(this, QString::fromWCharArray(L"µÇÂ¼"), QString::fromWCharArray(L"µÇÂ¼Ê§°Ü£ºµÇÂ¼ÐÅÏ¢ÓÐÎó"));
+		else if (m_loginInfo.clientID == -100)
+			QMessageBox::critical(this, QString::fromWCharArray(L"µÇÂ¼"), QString::fromWCharArray(L"µÇÂ¼Ê§°Ü£ºÈ±ÉÙÐí¿ÉÎÄ¼þ"));
+		else if (m_loginInfo.clientID == -101)
+			QMessageBox::critical(this, QString::fromWCharArray(L"µÇÂ¼"), QString::fromWCharArray(L"µÇÂ¼Ê§°Ü£ºÓÃ»§Î´ÊÚÈ¨"));
+		else if (m_loginInfo.clientID == -102)
+			QMessageBox::critical(this, QString::fromWCharArray(L"µÇÂ¼"), QString::fromWCharArray(L"µÇÂ¼Ê§°Ü£ºIP±»½ûÖ¹"));
+		else if (m_loginInfo.clientID == -103)
+			QMessageBox::critical(this, QString::fromWCharArray(L"µÇÂ¼"), QString::fromWCharArray(L"µÇÂ¼Ê§°Ü£ºÒÑ¹ýÓÐÐ§ÆÚÏÞ"));
+		else if (m_loginInfo.clientID == -104)
+			QMessageBox::critical(this, QString::fromWCharArray(L"µÇÂ¼"), QString::fromWCharArray(L"µÇÂ¼Ê§°Ü£ºÁ¬½Ó³¬Ê±"));
+		else
+			QMessageBox::critical(this, QString::fromWCharArray(L"µÇÂ¼"), QString::fromWCharArray(L"µÇÂ¼Ê§°Ü£ºÎ´ÖªÔ­Òò"));
 	}
 }

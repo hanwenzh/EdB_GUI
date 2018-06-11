@@ -88,7 +88,7 @@ void MainWindow::rollBackRecord()
 		int index = ui.tabWidget->addTab(pWidget, pWidget->m_loginInfo.showName.isEmpty()? pWidget->m_loginInfo.ip + " - " + pWidget->m_loginInfo.user : pWidget->m_loginInfo.showName);
 		ui.tabWidget->tabBar()->setTabButton(index, QTabBar::LeftSide, []() -> QCheckBox* {QCheckBox *pCheck = new QCheckBox(); pCheck->setChecked(true); return pCheck; }());
 		ui.tabWidget->setTabToolTip(index, QString("IP: ") + pWidget->m_loginInfo.ip + "\nPort: " + QString::number(pWidget->m_loginInfo.port) + "\nVersion: " + pWidget->m_loginInfo.version + "\nUser: " + pWidget->m_loginInfo.user + "\nYyb: " + pWidget->m_loginInfo.yyb);
-		if (pWidget->m_loginInfo.clientID == 0)
+		if (pWidget->m_loginInfo.clientID <= 0)
 		{
 			pWidget->setEnabled(false);
 		}

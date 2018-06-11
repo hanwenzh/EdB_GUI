@@ -426,7 +426,7 @@ void UserOperateWidget::rollBackRecord()
 		ui.lineEdit_getPrice->setText(settings.value("priceRecord/getpricereno", "").toString());
 		ui.check_repeatQuery->setChecked(settings.value("priceRecord/isrepeatgetprice", false).toBool());
 		ui.lineEdit_queryInterval->setText(settings.value("priceRecord/getpriceinterval", "2000").toString());
-		if (m_loginInfo.clientID == 0)
+		if (m_loginInfo.clientID <= 0)
 			this->setEnabled(false);
 	}
 	else

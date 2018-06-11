@@ -49,7 +49,7 @@ void RequestLogin::run()
 	bool isRead = localsocket.waitForReadyRead(10000);
 	if (!isRead)
 	{
-		m_loginInfo.clientID = 0;
+		m_loginInfo.clientID = -104;
 		return;
 	}
 
